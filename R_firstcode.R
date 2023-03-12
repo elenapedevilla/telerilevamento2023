@@ -16,7 +16,7 @@ plot(l2011)
 cl<-colorRampPalette(c(“red”, “orange”, “yellow”)) (100)
 plot(l2011, col=cl)
 
-plot(l2011[[4]], col=cl) o plot(l2011$B4_sre, col=cl)
+plot(l2011[[4]], col=cl) or plot(l2011$B4_sre, col=cl)
 
 nir<-l2011[[4]] or: nir<-l2011$B4_sre
 plot(nir, col=cl)
