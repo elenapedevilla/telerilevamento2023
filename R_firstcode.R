@@ -55,3 +55,24 @@ plot(l2011[[3]], col=clr)
 #infrared
 cln<-colorRampPalette(c("darkorcihd", "darkorchid3", "darkorchid4"))(100)
 plot(l2011[[4]], col=cln)
+
+#RGB plotting
+plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(l2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(l2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(l2011, r=3, g=2, b=4, stretch="Lin")
+
+#Multiframe with natural and false colours
+par(mfrow=c(2,1)) 
+plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(l2011, r=4, g=3, b=2, stretch="Lin")
+
+#Histogram stretching
+par(mfrow=c(2,1)) 
+plotRGB(l2011, r=3, g=2, b=1, stretch="Hist")
+plotRGB(l2011, r=4, g=3, b=2, stretch="Hist")
+
+#Linear vs. Histogram stretching
+par(mfrow=c(2,1)) 
+plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(l2011, r=4, g=3, b=2, stretch="Hist")
