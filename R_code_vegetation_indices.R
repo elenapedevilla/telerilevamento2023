@@ -19,10 +19,6 @@ dvi1992
 cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) 
 plot(dvi1992, col=cl)
 
-
-
-
-
 #Exercise: import defor2_.png
 l2006<-brick("defor2_.png")
-plot(l2006)
+plotRGB(l2006, 1, 2, 3, stretch="Lin")
