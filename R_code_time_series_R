@@ -36,3 +36,48 @@ plot(dift)
 # levelplot(TGr)
 cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
 plot(TGr, col=cl)
+
+
+#----Example 2: NO2 decrease during the lockdown period in Europe
+library(raster)
+setwd("C:/lab/en")
+
+#importing a file
+en01 <- raster("EN_0001.png")
+en01
+
+cl <- colorRampPalette(c('red','orange','yellow'))(100)
+plot(en01, col=cl)
+
+# Let's import the whole set (altogether!)
+rlist <- list.files(pattern="EN")
+rlist
+
+# lapply(X,FUN)
+rimp <- lapply(rlist, raster)
+rimp
+
+# stack
+en <- stack(rimp)
+en
+
+# plot everything
+plot(en, col=cl)
+
+# Exercise: plot EN01 besides EN13
+par(mfrow=c(1,2))
+plot(en[[1]], col=cl)
+plot(en[[13]], col=cl)
+
+# or:
+en113 <- stack(en[[1]], en[[13]])
+plot(en113, col=cl)
+
+# let's make the difference:
+difen <-  en[[1]] - en[[13]]
+cldif <- colorRampPalette(c('blue','white','red'))(100) #
+plot(difen, col=cldif)
+
+# plotRGB of three files together
+plotRGB(en, r=1, g=7, b=13, stretch="lin")
+plotRGB(en, r=1, g=7, b=13, stretch="hist")
