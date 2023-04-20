@@ -46,7 +46,11 @@ percentages = frequencies * 100 /  tot
 
 
 
-# day 2 Grand Canyon
+# Grand Canyon exercise
+
+library(raster)
+
+setwd("C:/lab/")
 
 gc <- brick("dolansprings_oli_2013088_canyon_lrg.jpg")
 gc
@@ -60,10 +64,16 @@ plotRGB(gc, r=1, g=2, b=3, stretch="lin")
 # change the stretch to histogram stretching
 plotRGB(gc, r=1, g=2, b=3, stretch="hist")
 
+#The image is quite bit; let's crop it
+gcc <- crop(gc, drawExtent())
+gcc 
+plotRGB(gcc, r=1, g=2, b=3, stretch="lin")
+ncell(gcc)
+
 # classification
 
 # 1. Get values
-singlenr <- getValues(gc)
+singlenr <- getValues(gcc)
 singlenr
 
 # 2. Classify
@@ -71,13 +81,19 @@ kcluster <- kmeans(singlenr, centers = 3)
 kcluster
 
 # 3. Set values
-gcclass <- setValues(gc[[1]], kcluster$cluster) # assign new values to a raster object
+gccclass <- setValues(gcc[[1]], kcluster$cluster) # assign new values to a raster object
+gccclass
 
 cl <- colorRampPalette(c('yellow','black','red'))(100)
-plot(gcclass, col=cl)
+plot(gccclass, col=cl)
 
-frequencies <- freq(gcclass)
-tot = 58076148
+#class 1: conglomerates
+#class 2: volcanic rocks
+#class 3: sandstone
+
+frequencies <- freq(gccclass)
+frequencies
+tot = ncell(gccclass)
+tot
 percentages = frequencies * 100 /  tot
-
-# Exercise: classify the map with 4 classes
+percentages
