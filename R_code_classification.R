@@ -64,7 +64,7 @@ plotRGB(gc, r=1, g=2, b=3, stretch="lin")
 # change the stretch to histogram stretching
 plotRGB(gc, r=1, g=2, b=3, stretch="hist")
 
-#The image is quite bit; let's crop it
+#The image is quite big; let's crop it
 gcc <- crop(gc, drawExtent())
 gcc 
 plotRGB(gcc, r=1, g=2, b=3, stretch="lin")
