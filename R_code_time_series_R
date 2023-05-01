@@ -14,7 +14,7 @@ lst_2015 <- raster("lst_2015.tif")
 # List
 ls()
 
-# List f files:
+# List files:
 rlist <- list.files(pattern="lst")
 rlist
 
