@@ -21,18 +21,18 @@ sample <- sampleRandom(sen2, 10000)
 sample
 pca <- prcomp(sample)
 
-# variance explained
+# Variance explained
 summary(pca)
 
-# correlation with original bands
+# Correlation with original bands
 pca
 
-# pc map
+# Pc map
 pci <- predict(sen2, pca, index=c(1:2))
 
 plot(pci[[1]])
 
-# ggplot
+# Ggplot
 pcid <- as.data.frame(pci[[1]], xy=T)
 
 ggplot() +
@@ -40,8 +40,8 @@ geom_raster(pcid, mapping = aes(x=x, y=y, fill=PC1)) +
 scale_fill_viridis()
 
 
-# speeding up analyses
-# aggregate cells: resampling (ricampionamento)
+# Speeding up analyses
+# Aggregate cells: resampling (ricampionamento)
 senres <- aggregate(sen, fact=10)
 
-# then repeat the PCA analysis
+# Then repeat the PCA analysis
