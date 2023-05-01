@@ -46,7 +46,7 @@ percentages = frequencies * 100 /  tot
 
 
 
-# Grand Canyon exercise
+# ------ Grand Canyon exercise
 
 library(raster)
 
@@ -69,6 +69,7 @@ gcc <- crop(gc, drawExtent())
 gcc 
 plotRGB(gcc, r=1, g=2, b=3, stretch="lin")
 ncell(gcc)
+
 
 # Classification
 
