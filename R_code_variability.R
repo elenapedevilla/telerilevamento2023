@@ -23,46 +23,46 @@ plotRGB(sen, 1, 2, 3, stretch="lin")
 # NIR on g component
 plotRGB(sen, 2, 1, 3)
 
-# calculation of variability over NIR --> standard deviation on the NIR band
+# Calculation of variability over NIR --> standard deviation on the NIR band
 nir <- sen[[1]]
 sd3 <- focal(nir, matrix(1/9, 3, 3), fun=sd)
 plot(sd3)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) #
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 plot(sd3, col=clsd)
 
-# plotting with ggplot
+# Plotting with ggplot
 sd3d <- as.data.frame(sd3, xy=T)
 sd3d
 
 ggplot() +
 geom_raster(sd3d, mapping=aes(x=x, y=y, fill=layer))
 
-# with viridis
+# With viridis
 ggplot() +
 geom_raster(sd3d, mapping =aes(x=x, y=y, fill=layer)) +
 scale_fill_viridis() +
 ggtitle("Standard deviation by viridis package")
 
-# cividis
+# Cividis
 ggplot() +
 geom_raster(sd3d, mapping =aes(x=x, y=y, fill=layer)) +
 scale_fill_viridis(option = "cividis") +
 ggtitle("Standard deviation by viridis package")
 
-# magma
+# Magma
 ggplot() +
 geom_raster(sd3d, mapping =aes(x=x, y=y, fill=layer)) +
 scale_fill_viridis(option = "magma") +
 ggtitle("Standard deviation by viridis package")
 
-# inferno
+# Inferno
 ggplot() +
 geom_raster(sd3d, mapping =aes(x=x, y=y, fill=layer)) +
 scale_fill_viridis(option = "inferno") +
 ggtitle("Standard deviation by viridis package")
 
-# patchwork
+# Patchwork
 p1 <- ggplot() +
 geom_raster(sd3d, mapping =aes(x=x, y=y, fill=layer)) +
 scale_fill_viridis() +
