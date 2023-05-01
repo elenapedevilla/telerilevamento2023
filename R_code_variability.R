@@ -1,9 +1,9 @@
 # How to measure landscape variabililty with R
 
 library(raster)
-library(RStoolbox) # for image viewing and variability calculation
-library(ggplot2) # for ggplot plotting
-library(patchwork) # multiframe with ggplot2 graphs
+library(RStoolbox) # For image viewing and variability calculation
+library(ggplot2) # For ggplot plotting
+library(patchwork) # Multiframe with ggplot2 graphs
 
 install.packages("viridis")
 library(viridis)
