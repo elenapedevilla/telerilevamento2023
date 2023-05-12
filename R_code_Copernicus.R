@@ -25,7 +25,7 @@ ggplot() +
 geom_raster(scd, mapping=aes(x=x, y=y, fill=Surface.Soil.Moisture)) # Il nome del layer (Surface.Soil.Moisture) si trova semplicemente scrivendo ssoil
 ggtitle("Soil Moisture from Copernicus")
 
-# Cropping an image (diverso dall'ultima volta)
+# Cropping an image (diverso dall'ultima volta, in quanto lo facciamo sulla base delle coordinate, non tramite un ritaglio diretto sull'immagine; questa modalità è molto più precisa)
 # Guardando l'immagine (il plot) decidiamo come/dove fare il crop: vogliamo la parte europea
 ext <- c(23, 30, 62, 68) # (x minima, x massima, y minima, y massima)
 sc.crop <- crop(ssoil, ext) # Crop dell'immagine ssoil con l'estensione definita sopra
