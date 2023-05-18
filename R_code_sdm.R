@@ -73,29 +73,33 @@ points(presences, pch=19)
 
 
 # Model; modello per prevedere la distribuzione della specie in zone in cui non abbiamo i dati (zone in cui non abbiamo campionato)
-# £ passaggi principali:
+# 3 passaggi principali:
 
 # 1. Set the data for the sdm; spiegare al sistema quali sono i dati che andiamo ad utilizzare
 datasdm <- sdmData(train=species, predictors=preds) # Train = dati a terra; predictors = predittori 
+datasdm # Vediamo i dati che andiamo ad utilizzare per il nostro modello; che classe è: sdmdata; numero di specie che andiamo ad analizzare = 1; ecc....
 
-# Model
+# 2. Model; si crea un modello che mette insieme le nostre variabili (quota, precipitazione, temperatura e vegetazione) con l'occorenza; asse y = occorenze; asse x = variabili
 m1 <- sdm(Occurrence ~ elevation + precipitation + temperature + vegetation, data=datasdm, methods = "glm")
 
-# Make the raster output layer
+# 3. Make the raster output layer; previsione della distribuzione della nostra specie sull'intera area
 p1 <- predict(m1, newdata=preds)
+p1 # Vediamo che abbiamo creato un raster layer
 
 # Plot the output
-plot(p1, col=cl)
-points(species[species$Occurrence == 1,], pch=16)
+plot(p1, col=cl) # Mappa di previsione della nostra specie
+points(presences, pch=19) # Mettendo points abbiamo anche i dati di presenza della specie a terra
 
-# Add to the stack
+# Add to the stack; abbiamo i quattro preditori (le 4 variabili) e abbiamo la mappa di predizione p1 --> li mettiamo insieme
 s1 <- stack(preds,p1)
 plot(s1, col=cl)
+# Abbiamo la temperatura, precipitazione, quota, vegetazione e la nostra mappa finale -> possiamo vedere la congruenza
+# Più alta possibilità di distribuzione dove la quota è più bassa, dove ci sono molte precipitazioni, dove ci sono temperature più alte, dove c'è più vegetazione
 
-# Do you want to change names in the plot of the stack?
+# Do you want to change names in the plot of the stack? Lo srtack ora si chiama id_1.sp...
 # Here your are!:
 # Choose a vector of names for the stack, looking at the previous graph, qhich are:
-names(s1) <- c('elevation', 'precipitation', 'temperature', 'vegetation', 'model')
+names(s1) <- c('elevation', 'precipitation', 'temperature', 'vegetation', 'model') # Chiamandolo model e andando a rifare il plot uscirà il nuovo nome
 # And then replot!:
 plot(s1, col=cl)
 # You are done, with one line of code (as usual!)
