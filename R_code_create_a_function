@@ -1,0 +1,51 @@
+# Creation of a function in R
+greet <- function() {
+  print("Hello world")
+}
+greet # Esce "Hello world"
+
+greet_mr <- function(name = "Duccio") {
+  greet_string <- paste("Hello", name, sep = " ")
+  print(greet_string)
+} 
+
+add_two <- function(num = 0) {
+  n_plus_two <- num + 2
+  return(n_plus_two)
+}
+
+n <- 3
+isten <- function(num = 0) {
+  if(num<10) {
+    print("n è minore di 10")
+  } else if(num > 10) {
+    print("n è maggiore di 10")
+  } else {
+    print("n uguale a 10")
+  }
+}
+isten(8) # Uscirà "n è minore di 10")
+
+add_two <- function(num=0) {
+  if(is.numeric(n)) # Per vedere se si tratta di un numero
+  n_plus_two <- num + 2
+  return(n_plus_two)
+}
+is.numeric(4) # Uscirà true
+is.numeric("c") # Uscirà false
+!is.numeric("c") # Il punto esclamativo in R è un non --> quindi in questo caso uscirà true, perché c effettivamente non è numerico
+
+add_two <- function(num=0) {
+  if(!is.numeric(num)) stop("Num non è numerico")
+  n_plus_two <- num + 2
+  return(n_plus_two)
+}
+add_two("c") # Uscirà "Num non è numerico"
+
+# Per mettere un warning se viene passato un valore indefinito
+add_two <- function(num=0) {
+  if(is.na(num)) warning("Num ha valore NA")
+  n_plus_two <- num + 2
+  return(n_plus_two)
+}
+
