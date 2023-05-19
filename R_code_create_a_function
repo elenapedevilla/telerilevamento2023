@@ -49,3 +49,28 @@ add_two <- function(num=0) {
   return(n_plus_two)
 }
 
+# Ciclo for ci permette di utilizzare la stessa cosa più volte
+for(i in 1:5) { # i è la nostra variabile, potrebbe essere qualsiasi altra cosa
+  print(i)
+}
+# Verrà stampata la lista da 1 a 5
+
+#5*3
+num <- 0 
+for(i in 1:3) {
+  num <- num + 5
+}
+num # Vedremo che esce 15
+
+multiply <- function(n1 = 1, n2 = 1) {
+  if(!is.numeric(n1) || !is.numeric(n2)) stop("n1 e n2 non sono numerici")
+  num <- 0
+  for(i in 1:n1) {
+    num <-num + n2
+  }
+  return(num)
+}
+
+res <- multiply(2,3)
+res # Uscirà 6, perché 2*3 = 6
+
