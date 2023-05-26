@@ -4,6 +4,7 @@ library(raster) # "Geographic Data Analysis and Modeling"
 library(rgdal) # "Geospatial Data Abstraction Library"
 library(viridis)
 library(ggplot2)
+library(patchwork)
 
 # Set working directory
 setwd("C:/lab/dati")
@@ -12,52 +13,57 @@ setwd("C:/lab/dati")
 # Load dsm 2013
 dsm_2013 <- raster("2013Elevation_DigitalElevationModel-0.5m.tif")
 
-dsm_2013 <- as.data.frame(dsm_2013, xy=T)
+dsm_2013d <- as.data.frame(dsm_2013, xy=T)
 
+# Fin qui corretto
 ggplot() +
-geom_raster(dsm_2013d, mapping =aes(x=x, y=y, fill=X2013Elevation_DigitalElevationModel-0.5m)) +
-scale_fill_viridis() +
-ggtitle("dsm 2013")
-
+  geom_raster(dsm_2013d, mapping=aes(x=x, y=y, fill=X2013Elevation_DigitalElevationModel-0.5m)) +
+  scale_fill_viridis() +
+  ggtitle("dsm 2013")
+  
 # DTM
 dtm_2013 <- raster("2013Elevation_DigitalTerrainModel-0.5m.tif")
 
-dtm_2013 <- as.data.frame(dtm_2013, xy=T)
+dtm_2013d <- as.data.frame(dtm_2013, xy=T)
 
 ggplot() +
-geom_raster(dsm_2013, mapping =aes(x=x, y=y, fill=X2013Elevation_DigitalTerrainModel-0.5m)) +
-scale_fill_viridis() +
-ggtitle("dtm 2013")
-
-
-
-
-
-
-
-
-
-# Plot the DSM 2013
-plot(dsm_2013, main="Lidar Digital Surface Model San Genesio/Jenesien")
-
-
-# Plot dtm 2013
-plot(dtm_2013, main="Lidar Digital Terrain Model San Genesio/Jenesien")
+  geom_raster(dtm_2013d, mapping=aes(x=x, y=y, fill=X2013Elevation_DigitalTerrainModel-0.5m)) +
+  scale_fill_viridis() +
+  ggtitle("dtm 2013")
 
 # Create CHM 2013 as difference between dsm and dtm
 chm_2013 <- dsm_2013 - dtm_2013
 
 # View CHM attributes
-chm_2013
+chm2013
 
-
-chm_2013d <- as.data.frame(chm_2013, xy=T)
+chm2013d <- as.data.frame(chm_2013, xy=T)
 
 ggplot() +
-  geom_raster(chm_2013d, mapping =aes(x=x, y=y, fill=layer)) +
+  geom_raster(chm2013d, mapping=aes(x=x, y=y, fill=layer)) +
   scale_fill_viridis() +
-  ggtitle("CHM 2013 San Genesio/Jenesien")
+  ggtitle("chm 2013")
 
+# Plot di tutte e tre le variabili
+p1 <- ggplot() +
+  geom_raster(dsm_2013d, mapping=aes(x=x, y=y, fill=X2013Elevation_DigitalElevationModel-0.5m)) +
+  scale_fill_viridis() +
+  ggtitle("dsm 2013")
+
+p2 <- ggplot() +
+  geom_raster(dtm_2013d, mapping=aes(x=x, y=y, fill=X2013Elevation_DigitalTerrainModel-0.5m)) +
+  scale_fill_viridis() +
+  ggtitle("dtm 2013")
+
+p3 <- ggplot() +
+  geom_raster(chm2013d, mapping=aes(x=x, y=y, fill=layer)) +
+  scale_fill_viridis() +
+  ggtitle("chm 2013")
+
+p1 + p2 + p3
+
+
+# ---- Rest is from Virtuale (not covered in class)
 # Save the CHM on computer
 writeRaster(chm_2013,"chm_2013_San_genesio.tif")
 
