@@ -1,0 +1,156 @@
+% Fondamenti presentazioni LaTeX 
+
+% Sito: Overleaf
+% Commenti su LaTeX: %
+% Per vedere cambiamenti si deve sempre cliccare Ricompila
+% Ogni volta che si clicca Ricompila salva da solo
+
+
+% Articoli
+\documentclass [a4paper, 12pt]{article} 
+% Le funzioni partono sempre con il backslash
+% documentclass è una funzione che serve per definire il tipo di classe di documento (in questo caso un articolo)
+% Tutte le funzioni raccolgono gli argomenti delle funzioni nelle parentesi graffe {}
+% [] vengono usate quando si cambia del cambiamento della struttura
+
+\usepackage{graphicx} 
+% Uso dei pacchetti = pezzi di software esterni a LaTeX che servono per cose aggiuntive
+% graphicx viene utilizzato per i grafici
+
+\begin{document}
+% Inizio di un documento
+
+\end{document}
+% Fine del documento
+
+
+
+% Presentazioni
+% Andiamo su Overleaf
+
+% Creazione nuovo progetto: Fondamenti presentazioni LaTeX 
+\documentclass{beamer} % Cliccando ricompila da articolo si trasforma in presentazione: mette una presentazione di default (con una struttura e colori di default)
+% Beamer = pezzo di software che serve per costruire delle presentazioni
+\usepackage{graphicx} % Required for inserting images
+
+% Struttura e colore della presentazione
+\usetheme{Warsaw} % Struttura della presentazione; anche Marburg è buono: sulla destra si vedono le diverse sezioni; con Frankfurt si vedono sempre le sezioni ma in alto con pallini
+\usecolortheme{spruce} % Colore della presentazione
+
+
+% Creazione slide
+\title{La mia prima presentazione in LaTeX}
+\author{Elena Pedevilla}
+%\date{} % Se commentiamo la data (la togliamo) inserirà in automatico la data di oggi
+
+\begin{document} % Inizio della presentazione
+
+\maketitle % Viene inserito il titolo
+
+
+% Slide tabella dei contenuti (delle sezioni)
+\AtBeginSection[]
+{
+\begin{frame} % Inserimento nuova slide
+\frametitle{Outline}
+\tableofcontents[currentsection]
+\end{frame}
+}
+% A ogni inizio sezione ritroveremo la slide riguardante la tabella dei contenuti
+
+
+% Creazione di una nuova slide
+\section{Introduction} 
+\begin{frame}{Prima slide} 
+Questa è la mia prima slide. % Testo della mia prima slide
+\end{frame} % Fine della prima slide
+
+
+% Creazione elenchi
+\begin{frame}{Elenchi puntati} 
+Ecology is based on the following frameworks:
+\begin{itemize} % Per la creazione di elenchi puntati si deve nuovamente utilizzare la funzione begin
+    \item Biology % Mettiamo i singoli elementi all'interno di questi item
+    \item \pause Geology % Se inserisco \pause l'elemento non comparirà subito; cfr. PowerPoint animazione in cui un elemento compare solo dopo un click
+    \item \pause Geography
+\end{itemize}
+\end{frame} 
+
+
+% Elenchi con frasi: quando abbiamo frasi sempre meglio mettere una parola in grassetto perché cattura subito l'attenzione
+\begin{frame}{Elenchi puntati} 
+Ecology is based on the following frameworks:
+\begin{itemize} 
+    \item Biology represents the \textbf{organism} world % Con \textbf si mette in grassetto; bf = bold format
+    \item \pause Geology is useful for studying \textbf{rocks}
+    \item \pause Geography is crucial in \textbf{spatial} ecology
+\end{itemize}
+\end{frame} 
+
+
+% Cambiare dimensione testo
+\begin{frame}{Elenchi puntati} 
+Ecology is based on the following frameworks:
+\begin{itemize} 
+    \item \tiny{Biology} 
+    \item \pause \tiny{Geology} 
+    \item \pause \tiny{Geography}
+\end{itemize}
+\end{frame} 
+% Font size: https://www.javatpoint.com/latex-fonts-size-and-styles
+
+
+% Inseimento formula
+\section{Metodi}
+\begin{frame}{The used formula}
+\begin{equation}
+    E_c = \frac{1}{2} \times m \times v^2 % Abbiamo utilizzato una formula random (energia cinetica)
+    % Abbiamo scritto E_c perché la c deve essere in adice (sotto, non sullo stesso livello)
+    % 1/2 non lo vogliamo scritto così, quindi usiamo la funzione \frac{}{}
+    % mv2 -> il 2 deve essere in apice, quindi ^
+    % Inseriamo una moltiplicazione all'interno della formula: \times
+    % (1) che compare è il numero dell'equazione; utile perché ogni volta che c'è un'equazione si fa riferimento ad essa
+\label{eq: cinetic} % Con il label nel testo non scriviamo (1) per riferirci alla formula, ma eq: cinetic, così se il numero della formula cambia (ad esempio perché ne inserisco altre prima) il software riprende l'equazione corretta
+\end{equation}
+\end{frame} 
+
+
+% Inserimento grafico
+% Inanzitutto si deve caricare l'immagine su Overleaf: a sinistra in alto: Upload
+\section{Risultati}
+\begin{frame}{Results in a graph}
+\centering
+\includegraphics[width=0.7 \textwidth]{butterfly.png} 
+% Nella {} si mette il titolo dell'immagine
+% [width=\textwidth] = utilizzo della grandezza della slide; trasforma la grandezza dell'immagine in base alla grandezza della slide
+% Con [width=0.7 \textwidth] riduce l'immagine a 0.7 volte la larghezza della slide, anche più piccolo naturalmente è possibile ad es. con 0.4 ecc.
+% Problema: non è centrata: quindi prima del \begin{frame} scriviamo \centering
+\end{frame}
+
+
+% Creazione slide con diverse immagini; una accanto all'altra
+\begin{frame}{Results in a graph}
+\centering
+\includegraphics[width=0.4 \textwidth]{butterfly.png} % 0.4 perché con 0.7 non avevano posto sulla stessa slide
+\includegraphics[width=0.4 \textwidth]{butterfly.png}
+\end{frame}
+
+
+% Creazione slide con diverse immagini; una accanto all'altra + due sotto
+\begin{frame}{Results in a graph}
+\centering
+\includegraphics[width=0.4 \textwidth]{butterfly.png} 
+\includegraphics[width=0.4 \textwidth]{butterfly.png} \\ % Con \\ andiamo a capo
+\includegraphics[width=0.4 \textwidth]{butterfly.png}
+\includegraphics[width=0.4 \textwidth]{butterfly.png}
+\end{frame}
+
+
+\begin{frame}{Discussion}
+    As seen in Equation \ref{eq: cinetic}, cinetic energy is a key factor in defining the mass and velocity of objects. % Con ref si fa riferimento a un'equazione; il software scrive direttamente Equation 1 anche se noi non abbiamo scritto 1, fa direttamente riferimento a quella equazione
+
+\end{frame}
+
+
+\end{document} % La presentazione viene chiusa
+
