@@ -6,7 +6,7 @@
 % Ogni volta che si clicca Ricompila salva da solo
 
 
-% Articoli
+% ARTICOLI
 \documentclass [a4paper, 12pt]{article} 
 % Le funzioni partono sempre con il backslash
 % documentclass è una funzione che serve per definire il tipo di classe di documento (in questo caso un articolo)
@@ -25,7 +25,7 @@
 
 
 
-% Presentazioni
+% PRESENTAZIONI
 % Andiamo su Overleaf
 
 % Creazione nuovo progetto: Fondamenti presentazioni LaTeX 
@@ -36,6 +36,7 @@
 % Struttura e colore della presentazione
 \usetheme{Warsaw} % Struttura della presentazione; anche Marburg è buono: sulla destra si vedono le diverse sezioni; con Frankfurt si vedono sempre le sezioni ma in alto con pallini
 \usecolortheme{spruce} % Colore della presentazione
+% Link struttura e colori: https://mpetroff.net/files/beamer-theme-matrix/
 
 
 % Creazione slide
@@ -154,3 +155,7 @@ Ecology is based on the following frameworks:
 
 \end{document} % La presentazione viene chiusa
 
+
+
+% PROGETTO DI ESEMPIO (invece di Nuovo progetto)
+% Nuovo progetto --> Presentation: c'è una galleria con molte presentazioni già pronte strutturalmente --> ne scelgo una: Open as template; cambiamo le cose in base a come vogliamo noi
